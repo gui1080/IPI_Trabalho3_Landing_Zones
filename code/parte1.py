@@ -7,6 +7,13 @@ import glob
 import copy
 import os
 
+from rgb_ycbcr import rgb_para_ycbcr
+from features import contrast
+#from features import correlation
+#from features import energy
+#from features import homogeneity
+from GLCM_module import GLCM
+
 #-----------------------------------------------------------------------------------------------------------------------------
 
 # Este é o endereço do meu diretório de imagens quando estava trabalhando no código na minha máquina com Windows 10
@@ -43,4 +50,35 @@ altura_perigo, largura_perigo, channels_perigo = array_imagens_perigo[0].shape
 print("Imagens de perigo lidas: ")
 print(numero_imagens_perigo)
 
+# no total, lemos as 150 imagens disponibilizadas
+
 #-----------------------------------------------------------------------------------------------------------------------------
+
+# para facilitar, pretende-se aplicar o KNN em outro módulo, o atual módulo salvará as caracteristicas das imagens em um arquivo externo
+# >contrast
+# >correlation 
+# >energy
+# >homogeneity 
+# (tudo retirado a partir da GLCM)
+
+# faremos uma matriz de caracteristas, posição 0 = contrast, posição 1 = correlation, posição 2 = energy, posição 3 = homogeneity 
+colunas, linhas = 3, 50
+Matriz_caracteristicas_asfalto = [[0 for x in range(colunas)] for y in range(linhas)] 
+
+# primeiras 25 imagens são treino, as outras são teste
+print("Imagens do asfalto sendo processadas...")
+for i in range(numero_imagens_asfalto):
+    imagem = rgb_para_ycbcr(array_imagens_asfalto[i]) 
+
+    matrizGLCM = GLCM(imagem, altura_asfalto, largura_asfalto) 
+    matrizGLCM /= np.sum(matrizGLCM)
+
+    Matriz_caracteristicas_asfalto[i][0] = contrast(matrizGLCM)
+    Matriz_caracteristicas_asfalto[i][1] = correlation(matrizGLCM)
+    Matriz_caracteristicas_asfalto[i][2] = energy(matrizGLCM)
+    Matriz_caracteristicas_asfalto[i][3] = homogeneity(matrizGLCM)
+
+    print("A seguinte imagem do array de imagens do asfalto acaba de ser processada!")
+    print(i + 1)
+
+
