@@ -8,7 +8,7 @@ def contrast(matriz):
 	soma = 0
 	for x in range(altura):
 		for y in range(largura):
-			soma += ((abs(x - y))**2) * matriz[x, y]
+			soma += (((abs(x - y))**2) * matriz[x, y])
 
 	return soma
 
@@ -21,9 +21,17 @@ def energy(matriz):
 	
 	for x in range(altura):	
 		for y in range(largura):
-			soma += (matriz[x, y])**2
+			soma += ((matriz[x, y])**2)
 	return soma
 
 
-# def homogeneity():
+def homogeneity(matriz):
+	altura, largura = matriz.shape
+	soma = 0
+	
+	for x in range(altura):	
+		for y in range(largura):
+			soma += ((matriz[x, y])/(1 + (abs(i - j))))
+	return soma
+
 
