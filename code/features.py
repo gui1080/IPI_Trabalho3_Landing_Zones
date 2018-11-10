@@ -6,16 +6,23 @@ import numpy as np
 def contrast(matriz):
 	altura, largura = matriz.shape
 	soma = 0
-	for i in range(altura):
-		for j in range(largura):
-			soma += ((abs(i - j))**2) * matriz[i, j]
+	for x in range(altura):
+		for y in range(largura):
+			soma += ((abs(x - y))**2) * matriz[x, y]
 
 	return soma
 
 # def correlation():
 
 
-# def energy():
+def energy(matriz):
+	altura, largura = matriz.shape
+	soma = 0
+	
+	for x in range(altura):	
+		for y in range(largura):
+			soma += (matriz[x, y])**2
+	return soma
 
 
 # def homogeneity():

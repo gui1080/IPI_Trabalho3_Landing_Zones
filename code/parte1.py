@@ -10,7 +10,7 @@ import os
 from rgb_ycbcr import rgb_para_ycbcr
 from features import contrast
 #from features import correlation
-#from features import energy
+from features import energy
 #from features import homogeneity
 from GLCM_module import GLCM
 
@@ -74,9 +74,13 @@ for i in range(numero_imagens_asfalto):
     matrizGLCM /= np.sum(matrizGLCM)
 
     Matriz_caracteristicas_asfalto[i][0] = contrast(matrizGLCM)
-    Matriz_caracteristicas_asfalto[i][1] = correlation(matrizGLCM)
+    #printf("Contraste processado!")
+    #Matriz_caracteristicas_asfalto[i][1] = correlation(matrizGLCM)
+    #printf("Correlação processada!")
     Matriz_caracteristicas_asfalto[i][2] = energy(matrizGLCM)
-    Matriz_caracteristicas_asfalto[i][3] = homogeneity(matrizGLCM)
+    #printf("Energia processada!")
+    #Matriz_caracteristicas_asfalto[i][3] = homogeneity(matrizGLCM)
+    #printf("Homogeneidade processada!")
 
     print("A seguinte imagem do array de imagens do asfalto acaba de ser processada!")
     print(i + 1)
