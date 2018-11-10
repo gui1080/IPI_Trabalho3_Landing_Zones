@@ -9,6 +9,7 @@ def contrast(matriz):
 	for x in range(altura):
 		for y in range(largura):
 			soma += (((abs(x - y))**2) * matriz[x, y])
+			# abs = absolute value
 
 	return soma
 
@@ -31,7 +32,9 @@ def homogeneity(matriz):
 	
 	for x in range(altura):	
 		for y in range(largura):
-			soma += ((matriz[x, y])/(1 + (abs(i - j))))
+			soma += ((matriz[x, y])/(1 + (abs(x - y))))
+			# abs = absolute value
+			
 	return soma
 
 
