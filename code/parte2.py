@@ -161,7 +161,7 @@ for i in range(50):
 		Matriz_perigo_teste[(i - 25)][2] = perigo[i][3]
 		#Matriz_perigo_teste[(i - 25)][3] = perigo[i][3]
 
-#-----------------------------------------------------PONTO MEDIO DE CADA TIPO DE IMAGEM------------------------------------------------------------------------
+#-----------------------------------------------------PONTO MEDIO DE CADA TIPO DE IMAGEM (TREINO)------------------------------------------------------------------------
 
 media_asfalto = []
 media_0 = 0
