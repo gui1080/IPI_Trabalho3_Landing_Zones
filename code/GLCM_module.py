@@ -3,8 +3,6 @@ import cv2
 
 # !!!Gray-Level Co-Occurrence Matrix!!!
 
-# atualizar com o meu histograma do trab 1
-
 def GLCM (imagem, altura, largura):
 	
 	listHistogram = []

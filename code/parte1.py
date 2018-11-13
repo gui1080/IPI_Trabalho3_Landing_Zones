@@ -1,6 +1,8 @@
 # Aluno: Guilherme Braga Pinto
 # 17/0162290
 
+# Durante testes, a execução total do programa durou 15~20 minutos em média.
+
 import numpy as np
 import cv2
 import glob
@@ -9,16 +11,15 @@ import os
 
 from rgb_ycbcr import rgb_para_ycbcr
 from features import contrast
-#from features import correlation
+from features import correlation
 from features import energy
 from features import homogeneity
 from GLCM_module import GLCM
 
 #-----------------------------------------------------------------------------------------------------------------------------
 
-# Este é o endereço do meu diretório de imagens quando estava trabalhando no código na minha máquina com Windows 10
+# Este é o endereço do meu diretório de imagens quando estava trabalhando no código no meu PC
 # este caminho deverá ser atualizado para ser rodado em outro PC, com o caminho onde as imagens se encontram
-
 path_asfalto="C:\\Users\\Guilherme Braga\\Desktop\\trab3\\Images\\asfalto\\*.png"
 path_grama="C:\\Users\\Guilherme Braga\\Desktop\\trab3\\Images\\grama\\*.png"                                                                                                                                                                                    
 path_perigo="C:\\Users\\Guilherme Braga\\Desktop\\trab3\\Images\\perigo\\*.png"
@@ -64,6 +65,8 @@ print(numero_imagens_perigo)
 # faremos uma matriz das 4 caracteristas, posição 0 = contrast, posição 1 = correlation, posição 2 = energy, posição 3 = homogeneity 
 colunas, linhas = 4, 50
 Matriz_caracteristicas_asfalto = [[0 for x in range(colunas)] for y in range(linhas)] 
+Matriz_caracteristicas_grama = [[0 for x in range(colunas)] for y in range(linhas)] 
+Matriz_caracteristicas_perigo = [[0 for x in range(colunas)] for y in range(linhas)] 
 
 #-----------------------------------------------------------------------------------------------------------------------------
 
@@ -79,7 +82,7 @@ for i in range(numero_imagens_asfalto):
 
     Matriz_caracteristicas_asfalto[i][0] = contrast(matrizGLCM)
     #printf("Contraste processado!")
-    #Matriz_caracteristicas_asfalto[i][1] = correlation(matrizGLCM)
+    Matriz_caracteristicas_asfalto[i][1] = correlation(matrizGLCM)
     #printf("Correlação processada!")
     Matriz_caracteristicas_asfalto[i][2] = energy(matrizGLCM)
     #printf("Energia processada!")
@@ -89,16 +92,60 @@ for i in range(numero_imagens_asfalto):
     print("A seguinte imagem do array de imagens do asfalto acaba de ser processada!")
     print(i + 1)
 
+np.savetxt('asfalto.txt', Matriz_caracteristicas_asfalto)
+
 #-----------------------------------------------------------------------------------------------------------------------------
 
 # GRAMA
+print("Imagens da grama sendo processadas...")
+for i in range(numero_imagens_grama):
+    imagem = rgb_para_ycbcr(array_imagens_grama[i]) 
+
+    matrizGLCM = GLCM(imagem, altura_grama, largura_grama) 
+    matrizGLCM /= np.sum(matrizGLCM)
+
+    Matriz_caracteristicas_grama[i][0] = contrast(matrizGLCM)
+    #printf("Contraste processado!")
+    Matriz_caracteristicas_grama[i][1] = correlation(matrizGLCM)
+    #printf("Correlação processada!")
+    Matriz_caracteristicas_grama[i][2] = energy(matrizGLCM)
+    #printf("Energia processada!")
+    Matriz_caracteristicas_grama[i][3] = homogeneity(matrizGLCM)
+    #printf("Homogeneidade processada!")
+
+    print("A seguinte imagem do array de imagens da grama acaba de ser processada!")
+    print(i + 1)
 
 
+
+np.savetxt('grama.txt', Matriz_caracteristicas_grama)
 
 #-----------------------------------------------------------------------------------------------------------------------------
 
 # PERIGO
 
+print("Imagens de perigo sendo processadas...")
+for i in range(numero_imagens_perigo):
+    imagem = rgb_para_ycbcr(array_imagens_perigo[i]) 
 
+    matrizGLCM = GLCM(imagem, altura_perigo, largura_perigo) 
+    matrizGLCM /= np.sum(matrizGLCM)
+
+    Matriz_caracteristicas_perigo[i][0] = contrast(matrizGLCM)
+    #printf("Contraste processado!")
+    Matriz_caracteristicas_perigo[i][1] = correlation(matrizGLCM)
+    #printf("Correlação processada!")
+    Matriz_caracteristicas_perigo[i][2] = energy(matrizGLCM)
+    #printf("Energia processada!")
+    Matriz_caracteristicas_perigo[i][3] = homogeneity(matrizGLCM)
+    #printf("Homogeneidade processada!")
+
+    print("A seguinte imagem do array de imagens de perigo acaba de ser processada!")
+    print(i + 1)
+
+
+np.savetxt('perigo.txt', Matriz_caracteristicas_perigo)
 
 #-----------------------------------------------------------------------------------------------------------------------------
+
+print("Features processadas com sucesso!")

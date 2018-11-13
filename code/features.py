@@ -13,7 +13,42 @@ def contrast(matriz):
 
 	return soma
 
-# def correlation():
+def correlation(matriz):
+    height, width = matriz.shape
+    listSumI = []
+    listSumJ = []
+
+    for i, j in zip(range(height), range(width)):
+        sumI = np.sum(matriz[i, :])
+        sumJ = np.sum(matriz[:, j])
+        listSumI.append(sumI)
+        listSumJ.append(sumJ)
+        sumI = 0
+        sumJ = 0
+
+    mediaI = 0
+    mediaJ = 0
+
+    for i in range(1, height+1):
+        mediaI += i * (listSumI[i-1])
+    for j in range(1, width+1):
+        mediaJ += j * (listSumJ[j-1])
+
+    variancia_aux_I = 0
+    for i in range(1, height+1):
+        variancia_aux_I += ((i - mediaI)**2) * listSumI[i - 1]
+    desvio_padraoI = variancia_aux_I**(1/2)
+    
+    variancia_aux_J = 0
+    for j in range(1, width+1):
+        variancia_aux_J += ((j - mediaJ)**2) * listSumJ[j - 1]
+    desvio_padraoJ = variancia_aux_J**(1/2)
+
+    soma = 0
+    for i in range(1, height+1):
+        for j in range(1, width+1):
+            soma += (((i - mediaI) * (j - mediaJ) * matriz[i-1, j-1])/(desvio_padraoI * desvio_padraoJ))
+    return soma
 
 
 def energy(matriz):
