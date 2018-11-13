@@ -1,3 +1,6 @@
+# Aluno: Guilherme Braga Pinto
+# 17/0162290
+
 import numpy as np
 import cv2
 
