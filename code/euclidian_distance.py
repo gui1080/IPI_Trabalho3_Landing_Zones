@@ -14,7 +14,6 @@ def euclidian_distance(coordenada_asfalto, coordenada_perigo, coordenada_grama, 
 	if(dist_asf < dist_per): 
 		if(dist_asf < dist_gra):
 			return 1
-
 	if(dist_gra < dist_per): 
 		if(dist_gra < dist_asf):
 			return 2
