@@ -20,3 +20,7 @@ Site auxiiar com equações das features: http://matlab.izmiran.ru/help/toolbox/
 
 
 # Segunda parte da tarefa
+
+Features selection e aplicação do KNN (deve-se executar o parte2.py).
+
+Tutorial de ajuda para entendimento do KNN: https://youtu.be/N8Fabn1om2k
