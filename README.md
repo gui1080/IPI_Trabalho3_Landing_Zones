@@ -16,7 +16,7 @@ Processamos e extraimos informações das imagens, e exportamos para que outro m
 
 Link das Imagens utilizadas: https://github.com/zaghetto/ImageProcessing/tree/master/Assignments/Assignment%203/Images
 
-Site auxiiar com equações das features: http://matlab.izmiran.ru/help/toolbox/images/graycoprops.html
+Site auxiliar com equações das features: http://matlab.izmiran.ru/help/toolbox/images/graycoprops.html
 
 
 # Segunda parte da tarefa
